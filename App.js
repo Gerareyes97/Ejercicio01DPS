@@ -5,51 +5,28 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 export default function App() {
   const [text1, settext1]=useState('');
   const [text2, settext2]=useState('');
+  const [text3, settext3]=useState('');
   const [resultado, setresultado]=useState('');
 
-  function sumar(n1, n2){
+  function sumar(n1, n2, n3){
     var a=parseFloat(n1);
     var b=parseFloat(n2);
-    var c=a+b;
+    var c=parseFloat(n3);
+    var x1= (( -b + Math.sqrt((Math.pow(b,2) - (4)*(a)*(c)))) / (2)*(a));
+    var x2= (( -b - Math.sqrt((Math.pow(b,2) - (4)*(a)*(c)))) / (2)*(a));
 
-    var resul="resultado: "+a+"+"+b+"="+c;
+    var resul="resultado X1: "+x1+" X2: "+x2;
     setresultado(resul);
   }
 
-  function Restar(n1, n2){
-    var a=parseFloat(n1);
-    var b=parseFloat(n2);
-    var c=a-b;
-
-    var resul="resultado: "+a+"-"+b+"="+c;
-    setresultado(resul);
-  }
-
-  function Multiplicar(n1, n2){
-    var a=parseFloat(n1);
-    var b=parseFloat(n2);
-    var c=a*b;
-
-    var resul="resultado: "+a+"*"+b+"="+c;
-    setresultado(resul);
-  }
-
-  function Dividir(n1, n2){
-    var a=parseFloat(n1);
-    var b=parseFloat(n2);
-    var c=a/b;
-
-    var resul="resultado: "+a+"/"+b+"="+c;
-    setresultado(resul);
-  }
 
 
 
 
   return (
     <View style={styles.container}>
-      <Text style= {{padding:15, fontSize:24, backgroundColor:'orange', color:'white', textAlign:'center'}}>
-      Suma de dos numeros
+      <Text style= {{padding:15, fontSize:24, backgroundColor:'green', color:'white', textAlign:'center'}}>
+      Formula de la cuadratica
       </Text>
 
       <TextInput style={{
@@ -60,7 +37,7 @@ export default function App() {
         marginTop:10,
         width:240
         }}
-        placeholder='valor 1'
+        placeholder='valor a'
         keyboardType='numeric'
         onChangeText={(text1)=>settext1(text1)}
         ></TextInput>
@@ -73,40 +50,32 @@ export default function App() {
         marginTop:10,
         width:240
         }}
-        placeholder='valor 2'
+        placeholder='valor b'
         keyboardType='numeric'
         onChangeText={(text2)=>settext2(text2)}
         ></TextInput>
 
-        <TouchableOpacity
-        style={{height:60,backgroundColor:'blue', marginTop:10}}
-        onPress={()=>{sumar(text1, text2)}}
-        >
-        <Text style={{color:'white', fontSize:24, textAlign:'center'}}>Sumar</Text>
-        </TouchableOpacity>
+<TextInput style={{
+        padding:5,
+        height:40,
+        borderColor:'black',
+        borderWidth:2,
+        marginTop:10,
+        width:240
+        }}
+        placeholder='valor c'
+        keyboardType='numeric'
+        onChangeText={(text3)=>settext3(text3)}
+        ></TextInput>
 
         <TouchableOpacity
-        style={{height:60,backgroundColor:'blue', marginTop:10}}
-        onPress={()=>{Restar(text1, text2)}}
+        style={{height:60,backgroundColor:'brown', marginTop:10}}
+        onPress={()=>{sumar(text1, text2, text3)}}
         >
-        <Text style={{color:'white', fontSize:24, textAlign:'center'}}>Restar</Text>
+        <Text style={{color:'white', fontSize:24, textAlign:'center'}}>Solucion</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-        style={{height:60,backgroundColor:'blue', marginTop:10}}
-        onPress={()=>{Multiplicar(text1, text2)}}
-        >
-        <Text style={{color:'white', fontSize:24, textAlign:'center'}}>Multiplicar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-        style={{height:60,backgroundColor:'blue', marginTop:10}}
-        onPress={()=>{Dividir(text1, text2)}}
-        >
-        <Text style={{color:'white', fontSize:24, textAlign:'center'}}>Dividir</Text>
-        </TouchableOpacity>
-        
-        <Text style={{fontSize:32}}>
+        <Text style={{fontSize:32, backgroundColor:"yellow", marginTop:10}}>
           {resultado}
         </Text>
 
